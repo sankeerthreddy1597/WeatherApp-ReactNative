@@ -19,7 +19,7 @@ export default HomeScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.primary,
+    backgroundColor: COLORS.primaryVariant,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -28,9 +28,14 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   button: {
-    backgroundColor: COLORS.secondaryVariant,
+    backgroundColor: COLORS.primary,
     padding: 10,
     marginTop: 10,
     borderRadius: 5,
+    shadowColor: COLORS.black,
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    elevation: 5,
   },
 });

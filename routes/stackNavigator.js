@@ -11,9 +11,13 @@ function stackNavigator() {
       <Stack.Screen
         name="Home"
         component={HomeScreen}
-        options={{ title: "Cities" }}
+        options={{ headerShown: false }}
       />
-      <Stack.Screen name="CityWeather" component={CityWeatherScreen} />
+      <Stack.Screen
+        name="CityWeather"
+        component={CityWeatherScreen}
+        options={{ headerShown: false }}
+      />
     </Stack.Navigator>
   );
 }
