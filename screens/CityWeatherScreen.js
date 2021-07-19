@@ -1,12 +1,16 @@
 import React from "react";
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { COLORS } from "../assets/theme/colors";
 
 export default CityWeatherScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <Text>City Weather Screen</Text>
-      <TouchableOpacity onPress={() => navigation.goBack()}>
-        <Text>Go back </Text>
+      <Text style={styles.text}>City Weather Screen</Text>
+      <TouchableOpacity
+        onPress={() => navigation.goBack()}
+        style={styles.button}
+      >
+        <Text style={styles.text}>Go back </Text>
       </TouchableOpacity>
     </View>
   );
@@ -15,8 +19,18 @@ export default CityWeatherScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: COLORS.primary,
     alignItems: "center",
     justifyContent: "center",
+  },
+  text: {
+    color: COLORS.onPrimary,
+    fontSize: 20,
+  },
+  button: {
+    backgroundColor: COLORS.secondaryVariant,
+    padding: 10,
+    marginTop: 10,
+    borderRadius: 5,
   },
 });
