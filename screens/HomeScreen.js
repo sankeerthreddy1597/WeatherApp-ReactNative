@@ -10,6 +10,7 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { COLORS } from "../assets/theme/colors";
 import AddCityModal from "../Components/AddCityModal";
+import CityWeatherCard from "../Components/CityWeatherCard";
 
 export default HomeScreen = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -20,10 +21,13 @@ export default HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <SafeAreaView style={styles.safeContainer}>
+        {/* Add City Modal */}
         <AddCityModal
           modalVisible={modalVisible}
           handleModalClose={handleModalClose}
         />
+
+        {/* Add new City Button */}
         <TouchableOpacity
           onPress={() => setModalVisible(true)}
           style={styles.addCityContainer}
@@ -32,6 +36,12 @@ export default HomeScreen = ({ navigation }) => {
           <Ionicons name="add" size={20} color={COLORS.white}></Ionicons>
         </TouchableOpacity>
         <View style={styles.separator}></View>
+
+        {/* Flatlist for cities weather */}
+        <CityWeatherCard navigation={navigation} />
+        <CityWeatherCard navigation={navigation} />
+        <CityWeatherCard navigation={navigation} />
+        <CityWeatherCard navigation={navigation} />
       </SafeAreaView>
     </View>
   );
@@ -74,6 +84,6 @@ const styles = StyleSheet.create({
     height: 1,
     borderWidth: 1,
     borderColor: COLORS.separator,
-    marginTop: 20,
+    marginVertical: 20,
   },
 });
