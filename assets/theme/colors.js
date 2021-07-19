@@ -6,6 +6,7 @@ export const COLORS = {
   secondaryVariantGradient: "#52c1f6",
 
   onPrimary: "#eeeeee",
+  onPrimaryHint: "#777777",
 
   white: "#fff",
   black: "#000",

@@ -1,20 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   StyleSheet,
   Text,
   TouchableOpacity,
   SafeAreaView,
+  Modal,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { COLORS } from "../assets/theme/colors";
+import AddCityModal from "../Components/AddCityModal";
 
 export default HomeScreen = ({ navigation }) => {
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const handleModalClose = () => {
+    setModalVisible(!modalVisible);
+  };
   return (
     <View style={styles.container}>
       <SafeAreaView style={styles.safeContainer}>
+        <AddCityModal
+          modalVisible={modalVisible}
+          handleModalClose={handleModalClose}
+        />
         <TouchableOpacity
-          onPress={() => navigation.navigate("CityWeather")}
+          onPress={() => setModalVisible(true)}
           style={styles.addCityContainer}
         >
           <Text style={styles.addCityText}>Add City</Text>
