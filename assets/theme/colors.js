@@ -11,4 +11,5 @@ export const COLORS = {
   black: "#000",
 
   error: "#b0253c",
+  separator: "#859699",
 };
