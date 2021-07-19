@@ -5,7 +5,16 @@
 - This is a mobile application development project for a Weather App using React-Native and Open Weather API.
 - The project uses the expo CLI for initial setup and other changes to the application.
 
-- Progress updates will be shared in this section.
+- Current Work:
+  - Stack Navigation between the home screen and cite weather screen.
+  - Choosing theme, colors and styles for the UI.
+
+### Current UI progress
+
+<p align="center">
+<img src="./assets/images/HomeScreenUI.png">
+<img src="./assets/images/CityWeatherScreen.png">
+</p>
 
 # Getting Started
 
