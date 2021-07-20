@@ -23,7 +23,7 @@ export default AddCityModal = ({ modalVisible, handleModalClose }) => {
         <View style={styles.modalHeading}>
           <Text style={styles.modalTitle}>Add City</Text>
           <Pressable onPress={() => handleModalClose()}>
-            <AntDesign name="close" size={24} color={COLORS.onPrimary} />
+            <AntDesign name="close" size={24} color={COLORS.secondaryVariant} />
           </Pressable>
         </View>
         <View style={styles.modalBody}>
