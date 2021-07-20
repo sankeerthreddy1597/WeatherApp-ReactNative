@@ -7,9 +7,12 @@ import {
   SafeAreaView,
   View,
   TextInput,
+  FlatList,
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { COLORS } from "../assets/theme/colors";
+import { cityData } from "../data/usaCities";
+import CityListItem from "./CityListItem";
 
 export default AddCityModal = ({ modalVisible, handleModalClose }) => {
   return (
@@ -31,6 +34,10 @@ export default AddCityModal = ({ modalVisible, handleModalClose }) => {
             placeholder="Add new city..."
             style={styles.modalSearch}
             placeholderTextColor={COLORS.onPrimaryHint}
+          />
+          <FlatList
+            data={cityData}
+            renderItem={({ item }) => <CityListItem item={item} />}
           />
         </View>
       </SafeAreaView>
@@ -67,6 +74,7 @@ const styles = StyleSheet.create({
     color: COLORS.onPrimary,
   },
   modalBody: {
+    flex: 1,
     marginTop: 30,
     width: "90%",
     paddingHorizontal: 10,
