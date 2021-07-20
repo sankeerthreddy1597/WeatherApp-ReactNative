@@ -14,6 +14,7 @@
 <p align="center">
 <img src="./assets/images/HomeScreenUI.png" width=30% height=auto>
 <img src="./assets/images/CityWeatherScreenUI.png" width=30% height=auto>
+<img src="./assets/images/AddCityUI.png" width=30% height=auto>
 </p>
 
 # Getting Started
