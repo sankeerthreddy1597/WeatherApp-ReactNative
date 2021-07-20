@@ -6,8 +6,9 @@
 - The project uses the expo CLI for initial setup and other changes to the application.
 
 - Current Work:
-  - Stack Navigation between the home screen and cite weather screen.
-  - Choosing theme, colors and styles for the UI.
+  - City Weather Screen UI
+  - Setting up data for calling OpenWeather API
+  - Search Update on Add city Modal
 
 ### Current UI progress
 
