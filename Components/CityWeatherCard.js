@@ -4,6 +4,8 @@ import { COLORS } from "../assets/theme/colors";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
+import { LinearGradient } from "expo-linear-gradient";
+import MaskedView from "@react-native-community/masked-view";
 
 export default CityWeatherCard = ({ cityDetails, onPress }) => {
   const weatherConditionMap = {
@@ -12,17 +14,31 @@ export default CityWeatherCard = ({ cityDetails, onPress }) => {
         name="snowflake"
         size={44}
         color={COLORS.secondaryVariant}
+        style={styles.shadow}
       />
     ),
-    sunny: <Ionicons name="sunny" size={44} color={COLORS.secondaryVariant} />,
+    sunny: (
+      <Ionicons
+        name="sunny"
+        size={44}
+        color={COLORS.secondaryVariant}
+        style={styles.shadow}
+      />
+    ),
     cloudy: (
-      <Ionicons name="cloudy" size={44} color={COLORS.secondaryVariant} />
+      <Ionicons
+        name="cloudy"
+        size={44}
+        color={COLORS.secondaryVariant}
+        style={styles.shadow}
+      />
     ),
     raining: (
       <FontAwesome5
         name="cloud-sun-rain"
         size={44}
         color={COLORS.secondaryVariant}
+        style={styles.shadow}
       />
     ),
   };
@@ -51,7 +67,33 @@ export default CityWeatherCard = ({ cityDetails, onPress }) => {
           >
             {cityDetails.temperature}°
           </Text>
-          {weatherConditionMap[cityDetails.weatherCondition]}
+
+          {/* Weather Condition Icon */}
+          <View style={{ width: 44 }}>
+            <MaskedView
+              style={{ flex: 1, flexDirection: "row", height: 44 }}
+              maskElement={
+                <View
+                  style={{
+                    backgroundColor: "transparent",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  {weatherConditionMap[cityDetails.weatherCondition]}
+                </View>
+              }
+            >
+              <LinearGradient
+                colors={[
+                  COLORS.secondaryVariant,
+                  COLORS.secondaryVariantGradient,
+                ]}
+                style={{ flex: 1 }}
+              ></LinearGradient>
+            </MaskedView>
+          </View>
+          {/* End Weather Condition icon */}
         </View>
         <View
           style={{
@@ -100,5 +142,14 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingVertical: 5,
     width: "40%",
+  },
+  shadow: {
+    shadowColor: "black",
+    shadowOpacity: 0.5,
+    shadowRadius: 5,
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
   },
 });

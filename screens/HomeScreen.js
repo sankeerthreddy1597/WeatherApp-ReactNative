@@ -117,6 +117,7 @@ export default HomeScreen = ({ navigation }) => {
         <FlatList
           style={styles.cityList}
           data={cities}
+          showsVerticalScrollIndicator={false}
           renderItem={({ item }) => (
             <CityWeatherCard
               cityDetails={item}
