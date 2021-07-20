@@ -3,17 +3,39 @@ import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import { COLORS } from "../assets/theme/colors";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 
-export default CityWeatherCard = ({ navigation }) => {
+export default CityWeatherCard = ({ cityDetails, onPress }) => {
+  const weatherConditionMap = {
+    snowy: (
+      <FontAwesome5
+        name="snowflake"
+        size={44}
+        color={COLORS.secondaryVariant}
+      />
+    ),
+    sunny: <Ionicons name="sunny" size={44} color={COLORS.secondaryVariant} />,
+    cloudy: (
+      <Ionicons name="cloudy" size={44} color={COLORS.secondaryVariant} />
+    ),
+    raining: (
+      <FontAwesome5
+        name="cloud-sun-rain"
+        size={44}
+        color={COLORS.secondaryVariant}
+      />
+    ),
+  };
   return (
-    <TouchableOpacity
-      style={styles.cardContainer}
-      onPress={() => navigation.navigate("CityWeather")}
-    >
+    <TouchableOpacity style={styles.cardContainer} onPress={onPress}>
       {/* Left - City */}
       <View style={styles.cardCityDetails}>
-        <Text style={{ fontSize: 38, color: COLORS.onPrimary }}>Austin</Text>
-        <Text style={{ fontSize: 18, color: COLORS.onPrimaryHint }}>USA</Text>
+        <Text style={{ fontSize: 24, color: COLORS.onPrimary }}>
+          {cityDetails.city}
+        </Text>
+        <Text style={{ fontSize: 16, color: COLORS.onPrimaryHint }}>
+          {cityDetails.country}
+        </Text>
       </View>
       {/* Right - Details */}
       <View style={styles.cardTempDetails}>
@@ -24,12 +46,12 @@ export default CityWeatherCard = ({ navigation }) => {
             alignItems: "center",
           }}
         >
-          <Text style={{ fontSize: 26, color: COLORS.onPrimary }}>22°</Text>
-          <FontAwesome5
-            name="snowflake"
-            size={44}
-            color={COLORS.secondaryVariant}
-          />
+          <Text
+            style={{ fontSize: 26, color: COLORS.onPrimary, marginLeft: 10 }}
+          >
+            {cityDetails.temperature}°
+          </Text>
+          {weatherConditionMap[cityDetails.weatherCondition]}
         </View>
         <View
           style={{
@@ -41,11 +63,11 @@ export default CityWeatherCard = ({ navigation }) => {
         >
           <Feather name="droplet" size={22} color={COLORS.onPrimary} />
           <Text style={{ marginHorizontal: 5, color: COLORS.onPrimary }}>
-            17%
+            {cityDetails.rain}%
           </Text>
           <Feather name="wind" size={22} color={COLORS.onPrimary} />
           <Text style={{ marginHorizontal: 5, color: COLORS.onPrimary }}>
-            8km/h
+            {cityDetails.wind}km/h
           </Text>
         </View>
       </View>
@@ -55,7 +77,7 @@ export default CityWeatherCard = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   cardContainer: {
-    width: "90%",
+    width: "100%",
     backgroundColor: COLORS.primary,
     minHeight: 100,
     padding: 10,
@@ -68,13 +90,15 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     paddingHorizontal: 20,
     justifyContent: "space-between",
-    marginBottom: 20,
+    marginBottom: 10,
   },
   cardCityDetails: {
     justifyContent: "space-evenly",
+    maxWidth: "50%",
   },
   cardTempDetails: {
     justifyContent: "space-between",
     paddingVertical: 5,
+    width: "40%",
   },
 });

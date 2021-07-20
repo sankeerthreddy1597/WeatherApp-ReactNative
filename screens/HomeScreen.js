@@ -5,7 +5,7 @@ import {
   Text,
   TouchableOpacity,
   SafeAreaView,
-  Modal,
+  FlatList,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { COLORS } from "../assets/theme/colors";
@@ -13,6 +13,80 @@ import AddCityModal from "../Components/AddCityModal";
 import CityWeatherCard from "../Components/CityWeatherCard";
 
 export default HomeScreen = ({ navigation }) => {
+  const cities = [
+    {
+      key: "1",
+      city: "Austin",
+      country: "USA",
+      temperature: "-2",
+      weatherCondition: "snowy",
+      rain: "17",
+      wind: "8",
+    },
+    {
+      key: "2",
+      city: "Miami",
+      country: "USA",
+      temperature: "18",
+      weatherCondition: "sunny",
+      rain: "7",
+      wind: "18",
+    },
+    {
+      key: "3",
+      city: "San Francisco",
+      country: "USA",
+      temperature: "28",
+      weatherCondition: "cloudy",
+      rain: "47",
+      wind: "28",
+    },
+    {
+      key: "4",
+      city: "New York",
+      country: "USA",
+      temperature: "12",
+      weatherCondition: "raining",
+      rain: "87",
+      wind: "14",
+    },
+    {
+      key: "5",
+      city: "Austin",
+      country: "USA",
+      temperature: "-2",
+      weatherCondition: "snowy",
+      rain: "17",
+      wind: "8",
+    },
+    {
+      key: "6",
+      city: "Miami",
+      country: "USA",
+      temperature: "18",
+      weatherCondition: "sunny",
+      rain: "7",
+      wind: "18",
+    },
+    {
+      key: "7",
+      city: "San Francisco",
+      country: "USA",
+      temperature: "28",
+      weatherCondition: "cloudy",
+      rain: "47",
+      wind: "28",
+    },
+    {
+      key: "8",
+      city: "New York",
+      country: "USA",
+      temperature: "12",
+      weatherCondition: "raining",
+      rain: "87",
+      wind: "14",
+    },
+  ];
   const [modalVisible, setModalVisible] = useState(false);
 
   const handleModalClose = () => {
@@ -35,13 +109,21 @@ export default HomeScreen = ({ navigation }) => {
           <Text style={styles.addCityText}>Add City</Text>
           <Ionicons name="add" size={20} color={COLORS.white}></Ionicons>
         </TouchableOpacity>
+
+        {/* Separator */}
         <View style={styles.separator}></View>
 
         {/* Flatlist for cities weather */}
-        <CityWeatherCard navigation={navigation} />
-        <CityWeatherCard navigation={navigation} />
-        <CityWeatherCard navigation={navigation} />
-        <CityWeatherCard navigation={navigation} />
+        <FlatList
+          style={styles.cityList}
+          data={cities}
+          renderItem={({ item }) => (
+            <CityWeatherCard
+              cityDetails={item}
+              onPress={() => navigation.navigate("CityWeather", item)}
+            />
+          )}
+        />
       </SafeAreaView>
     </View>
   );
@@ -85,5 +167,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: COLORS.separator,
     marginVertical: 20,
+  },
+  cityList: {
+    width: "90%",
   },
 });
