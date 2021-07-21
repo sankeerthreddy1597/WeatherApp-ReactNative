@@ -1,19 +1,25 @@
 import React from "react";
-import { Text, StyleSheet, Pressable } from "react-native";
+import { Text, StyleSheet, TouchableOpacity } from "react-native";
 import { COLORS } from "../assets/theme/colors";
 import { EvilIcons } from "@expo/vector-icons";
+import { useDispatch } from "react-redux";
+import { addCity } from "../redux/actions/cities";
 
 export default CityListItem = ({ item, handleModalClose }) => {
+  const dispatch = useDispatch();
+
   const handleAddCity = () => {
+    dispatch(addCity(item.city));
     handleModalClose();
   };
+
   return (
-    <Pressable style={styles.container} onPress={handleAddCity}>
+    <TouchableOpacity style={styles.container} onPress={handleAddCity}>
       <EvilIcons name="location" size={24} color={COLORS.onPrimary} />
       <Text style={{ color: COLORS.onPrimary, fontSize: 17 }}>
         {item.city}, {item.state}
       </Text>
-    </Pressable>
+    </TouchableOpacity>
   );
 };
 

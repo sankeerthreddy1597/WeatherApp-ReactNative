@@ -19,7 +19,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default CityWeatherScreen = ({ route, navigation }) => {
   const weatherConditionMap = {
-    snowy: (
+    Snow: (
       <FontAwesome5
         name="snowflake"
         size={350}
@@ -27,7 +27,7 @@ export default CityWeatherScreen = ({ route, navigation }) => {
         style={styles.shadow}
       />
     ),
-    sunny: (
+    Clear: (
       <Ionicons
         name="sunny"
         size={350}
@@ -35,7 +35,7 @@ export default CityWeatherScreen = ({ route, navigation }) => {
         style={styles.shadow}
       />
     ),
-    cloudy: (
+    Clouds: (
       <Ionicons
         name="cloudy"
         size={350}
@@ -43,7 +43,7 @@ export default CityWeatherScreen = ({ route, navigation }) => {
         style={styles.shadow}
       />
     ),
-    raining: (
+    Rain: (
       <FontAwesome5
         name="cloud-sun-rain"
         size={350}

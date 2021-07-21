@@ -103,12 +103,15 @@ const styles = StyleSheet.create({
     // backgroundColor: COLORS.white,
   },
   modalSearch: {
+    height: 45,
+    width: "100%",
     borderColor: COLORS.onPrimary,
     borderWidth: 1,
     color: COLORS.onPrimary,
     fontSize: 18,
     paddingLeft: 10,
     paddingVertical: 5,
-    borderRadius: 5,
+    borderRadius: 7,
+    marginBottom: 10,
   },
 });

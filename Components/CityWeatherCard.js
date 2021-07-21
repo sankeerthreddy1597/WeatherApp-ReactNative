@@ -9,7 +9,7 @@ import MaskedView from "@react-native-community/masked-view";
 
 export default CityWeatherCard = ({ cityDetails, onPress }) => {
   const weatherConditionMap = {
-    snowy: (
+    Snow: (
       <FontAwesome5
         name="snowflake"
         size={44}
@@ -17,7 +17,7 @@ export default CityWeatherCard = ({ cityDetails, onPress }) => {
         style={styles.shadow}
       />
     ),
-    sunny: (
+    Clear: (
       <Ionicons
         name="sunny"
         size={44}
@@ -25,7 +25,7 @@ export default CityWeatherCard = ({ cityDetails, onPress }) => {
         style={styles.shadow}
       />
     ),
-    cloudy: (
+    Clouds: (
       <Ionicons
         name="cloudy"
         size={44}
@@ -33,7 +33,7 @@ export default CityWeatherCard = ({ cityDetails, onPress }) => {
         style={styles.shadow}
       />
     ),
-    raining: (
+    Rain: (
       <FontAwesome5
         name="cloud-sun-rain"
         size={44}

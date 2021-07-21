@@ -6,7 +6,10 @@ export const cityReducer = (
 ) => {
   switch (action.type) {
     case ADD_CITY:
-      return state;
+      return {
+        ...state,
+        citiesList: [...state.citiesList, action.payload],
+      };
     case GET_CITY_FORECAST:
       return state;
     default:

@@ -11,82 +11,14 @@ import { Ionicons } from "@expo/vector-icons";
 import { COLORS } from "../assets/theme/colors";
 import AddCityModal from "../Components/AddCityModal";
 import CityWeatherCard from "../Components/CityWeatherCard";
+import { useSelector } from "react-redux";
 
 export default HomeScreen = ({ navigation }) => {
-  const cities = [
-    {
-      key: "1",
-      city: "Austin",
-      country: "USA",
-      temperature: "-2",
-      weatherCondition: "snowy",
-      rain: "17",
-      wind: "8",
-    },
-    {
-      key: "2",
-      city: "Miami",
-      country: "USA",
-      temperature: "18",
-      weatherCondition: "sunny",
-      rain: "7",
-      wind: "18",
-    },
-    {
-      key: "3",
-      city: "San Francisco",
-      country: "USA",
-      temperature: "28",
-      weatherCondition: "cloudy",
-      rain: "47",
-      wind: "28",
-    },
-    {
-      key: "4",
-      city: "New York",
-      country: "USA",
-      temperature: "12",
-      weatherCondition: "raining",
-      rain: "87",
-      wind: "14",
-    },
-    {
-      key: "5",
-      city: "Austin",
-      country: "USA",
-      temperature: "-2",
-      weatherCondition: "snowy",
-      rain: "17",
-      wind: "8",
-    },
-    {
-      key: "6",
-      city: "Miami",
-      country: "USA",
-      temperature: "18",
-      weatherCondition: "sunny",
-      rain: "7",
-      wind: "18",
-    },
-    {
-      key: "7",
-      city: "San Francisco",
-      country: "USA",
-      temperature: "28",
-      weatherCondition: "cloudy",
-      rain: "47",
-      wind: "28",
-    },
-    {
-      key: "8",
-      city: "New York",
-      country: "USA",
-      temperature: "12",
-      weatherCondition: "raining",
-      rain: "87",
-      wind: "14",
-    },
-  ];
+  const citiesList = useSelector((state) => state.cityReducer.citiesList);
+  console.log(
+    "Cities List -------------------------------------------------",
+    citiesList
+  );
   const [modalVisible, setModalVisible] = useState(false);
 
   const handleModalClose = () => {
@@ -116,7 +48,7 @@ export default HomeScreen = ({ navigation }) => {
         {/* Flatlist for cities weather */}
         <FlatList
           style={styles.cityList}
-          data={cities}
+          data={citiesList}
           showsVerticalScrollIndicator={false}
           renderItem={({ item }) => (
             <CityWeatherCard
