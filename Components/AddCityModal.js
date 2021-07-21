@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Modal,
   Text,
@@ -15,6 +15,21 @@ import { cityData } from "../data/usaCities";
 import CityListItem from "./CityListItem";
 
 export default AddCityModal = ({ modalVisible, handleModalClose }) => {
+  cityData.forEach((city, index) => (city.key = index.toString()));
+  const [citySearch, setCitySearch] = useState("");
+  const [cityList, setCityList] = useState(cityData);
+
+  useEffect(() => {
+    setCityList(
+      cityData.filter((cityName) =>
+        citySearch !== "" ? cityName.city.startsWith(citySearch) : true
+      )
+    );
+  }, [citySearch]);
+
+  const handleCitySearchChange = (e) => {
+    setCitySearch(e);
+  };
   return (
     <Modal
       animationType="slide"
@@ -34,9 +49,11 @@ export default AddCityModal = ({ modalVisible, handleModalClose }) => {
             placeholder="Add new city..."
             style={styles.modalSearch}
             placeholderTextColor={COLORS.onPrimaryHint}
+            value={citySearch}
+            onChangeText={handleCitySearchChange}
           />
           <FlatList
-            data={cityData}
+            data={cityList}
             renderItem={({ item }) => <CityListItem item={item} />}
           />
         </View>
