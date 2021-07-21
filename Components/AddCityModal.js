@@ -54,7 +54,12 @@ export default AddCityModal = ({ modalVisible, handleModalClose }) => {
           />
           <FlatList
             data={cityList}
-            renderItem={({ item }) => <CityListItem item={item} />}
+            renderItem={({ item }) => (
+              <CityListItem
+                item={item}
+                handleModalClose={() => handleModalClose()}
+              />
+            )}
           />
         </View>
       </SafeAreaView>

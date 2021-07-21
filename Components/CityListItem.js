@@ -1,16 +1,19 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { Text, StyleSheet, Pressable } from "react-native";
 import { COLORS } from "../assets/theme/colors";
 import { EvilIcons } from "@expo/vector-icons";
 
-export default CityListItem = ({ item }) => {
+export default CityListItem = ({ item, handleModalClose }) => {
+  const handleAddCity = () => {
+    handleModalClose();
+  };
   return (
-    <View style={styles.container}>
+    <Pressable style={styles.container} onPress={handleAddCity}>
       <EvilIcons name="location" size={24} color={COLORS.onPrimary} />
       <Text style={{ color: COLORS.onPrimary, fontSize: 17 }}>
         {item.city}, {item.state}
       </Text>
-    </View>
+    </Pressable>
   );
 };
 
