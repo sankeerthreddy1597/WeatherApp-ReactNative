@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   StyleSheet,
@@ -12,11 +12,24 @@ import { COLORS } from "../assets/theme/colors";
 import AddCityModal from "../Components/AddCityModal";
 import CityWeatherCard from "../Components/CityWeatherCard";
 import { useSelector } from "react-redux";
+import * as Location from "expo-location";
 
 export default HomeScreen = ({ navigation }) => {
   const citiesList = useSelector((state) => state.cityReducer.citiesList);
 
   const [modalVisible, setModalVisible] = useState(false);
+  const [location, setLocation] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status === "granted") {
+        let location = await Location.getCurrentPositionAsync({});
+        setLocation(location);
+        console.log(location);
+      }
+    })();
+  }, []);
 
   const handleModalClose = () => {
     setModalVisible(!modalVisible);
@@ -43,6 +56,18 @@ export default HomeScreen = ({ navigation }) => {
         <View style={styles.separator}></View>
 
         {/* Flatlist for cities weather */}
+        {citiesList.length === 0 && (
+          <Text
+            style={{
+              color: COLORS.onPrimaryHint,
+              fontSize: 15,
+              textTransform: "uppercase",
+              marginTop: "15%",
+            }}
+          >
+            Add Cities to display Weather.
+          </Text>
+        )}
         <FlatList
           style={styles.cityList}
           data={citiesList}
