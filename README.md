@@ -6,9 +6,9 @@
 - The project uses the expo CLI for initial setup and other changes to the application.
 
 - Current Work:
-  - Individual City Screen UI.
-  - Calling API for weather forecast for each city in list.
-  - Managing redux state for GET_CITY_FORECAST action.
+  - Testing for Bugs.
+  - Code CLeaning.
+  - MAYBE - improve UI design for AddCityModal.
 
 ### Current UI progress
 
