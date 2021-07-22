@@ -10,6 +10,8 @@ export const COLORS = {
 
   white: "#fff",
   black: "#000",
+  yellow: "yellow",
+  orange: "orange",
 
   error: "#b0253c",
   separator: "#859699",

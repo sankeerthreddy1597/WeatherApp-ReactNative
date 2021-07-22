@@ -40,6 +40,7 @@ export const getCityForecast = (city) => async (dispatch, getState) => {
   let cityData = [];
   data.list.forEach((hour) =>
     cityData.push({
+      id: hour.dt.toString(),
       date_txt: hour.dt_txt,
       maxTemp: ((hour.main.temp_max - 273) * (9 / 5) + 32).toFixed(1),
       minTemp: ((hour.main.temp_min - 273) * (9 / 5) + 32).toFixed(1),

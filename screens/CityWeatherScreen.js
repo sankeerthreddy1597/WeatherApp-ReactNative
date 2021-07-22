@@ -8,6 +8,7 @@ import {
   SafeAreaView,
   StatusBar,
   Platform,
+  FlatList,
 } from "react-native";
 import { COLORS } from "../assets/theme/colors";
 import { AntDesign } from "@expo/vector-icons";
@@ -58,6 +59,41 @@ export default CityWeatherScreen = ({ route, navigation }) => {
       <FontAwesome5
         name="cloud-sun-rain"
         size={350}
+        color={COLORS.secondaryVariant}
+        style={styles.shadow}
+      />
+    ),
+  };
+
+  const conditionMap = {
+    Snow: (
+      <FontAwesome5
+        name="snowflake"
+        size={22}
+        color={COLORS.secondaryVariant}
+        style={styles.shadow}
+      />
+    ),
+    Clear: (
+      <Ionicons
+        name="sunny"
+        size={22}
+        color={COLORS.secondaryVariant}
+        style={styles.shadow}
+      />
+    ),
+    Clouds: (
+      <Ionicons
+        name="cloudy"
+        size={22}
+        color={COLORS.secondaryVariant}
+        style={styles.shadow}
+      />
+    ),
+    Rain: (
+      <FontAwesome5
+        name="cloud-sun-rain"
+        size={22}
         color={COLORS.secondaryVariant}
         style={styles.shadow}
       />
@@ -205,7 +241,7 @@ export default CityWeatherScreen = ({ route, navigation }) => {
               justifyContent: "center",
             }}
           >
-            <Feather name="sunrise" size={22} color="yellow" />
+            <Feather name="sunrise" size={22} color={COLORS.yellow} />
             <Text
               style={{
                 marginLeft: 15,
@@ -234,11 +270,81 @@ export default CityWeatherScreen = ({ route, navigation }) => {
             <Feather
               name="sunset"
               size={22}
-              color="orange"
+              color={COLORS.orange}
               style={{ marginLeft: 15 }}
             />
           </View>
         </View>
+
+        {/* Forecast Prediction Template */}
+        <FlatList
+          style={styles.forecastList}
+          data={cityForecast}
+          renderItem={({ item }) => (
+            <View
+              style={{
+                flexDirection: "row",
+                marginTop: 15,
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <Text style={{ color: COLORS.onPrimary, fontSize: 16 }}>
+                {moment.unix(item.id).format("M/D, h:mm a")}
+              </Text>
+              {/* Icon start */}
+              <View
+                style={{
+                  width: 22,
+                  height: "100%",
+                  alignItems: "center",
+                }}
+              >
+                <MaskedView
+                  style={{
+                    flex: 1,
+                    flexDirection: "row",
+                    height: 22,
+                  }}
+                  maskElement={
+                    <View
+                      style={{
+                        backgroundColor: "transparent",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      {conditionMap[item.condition]}
+                    </View>
+                  }
+                >
+                  <LinearGradient
+                    colors={[
+                      COLORS.secondaryVariant,
+                      COLORS.secondaryVariantGradient,
+                    ]}
+                    style={{ flex: 1 }}
+                  ></LinearGradient>
+                </MaskedView>
+              </View>
+              {/* Icon end */}
+              <View
+                style={{
+                  flexDirection: "row",
+                  width: "20%",
+                  marginHorizontal: 10,
+                }}
+              >
+                <Text style={{ color: COLORS.onPrimary, marginHorizontal: 4 }}>
+                  {item.minTemp}
+                </Text>
+                <Text style={{ color: COLORS.onPrimary, marginHorizontal: 4 }}>
+                  {item.maxTemp}
+                </Text>
+              </View>
+            </View>
+          )}
+        />
       </View>
     </SafeAreaView>
   );
@@ -299,5 +405,11 @@ const styles = StyleSheet.create({
       width: 0,
       height: 1,
     },
+  },
+  forecastList: {
+    marginTop: 20,
+    paddingTop: 10,
+    borderTopWidth: 1,
+    borderTopColor: COLORS.onPrimary,
   },
 });
