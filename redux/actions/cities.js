@@ -1,4 +1,5 @@
 import axios from "axios";
+import { APIKey } from "@env";
 
 import { ADD_CITY, GET_CITY_FORECAST } from "../actionConstants/cityActions";
 
@@ -10,10 +11,9 @@ const config = {
 
 export const addCity = (city) => async (dispatch, getState) => {
   const { data } = await axios.get(
-    `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=d8e54d9e4ab83608dbc0ea082478cfb5`,
+    `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}`,
     config
   );
-  console.log(data);
   const newCityDetails = {
     id: data.id.toString(),
     city: data.name,
@@ -32,9 +32,8 @@ export const addCity = (city) => async (dispatch, getState) => {
 };
 
 export const getCityForecast = (city) => async (dispatch, getState) => {
-  console.log(city);
   const { data } = await axios.get(
-    `http://api.openweathermap.org/data/2.5/forecast?id=${city}&appid=d8e54d9e4ab83608dbc0ea082478cfb5`,
+    `http://api.openweathermap.org/data/2.5/forecast?id=${city}&appid=${APIKey}`,
     config
   );
   let cityData = [];
@@ -47,7 +46,6 @@ export const getCityForecast = (city) => async (dispatch, getState) => {
       condition: hour.weather[0].main,
     })
   );
-  //console.log(cityData);
   dispatch({
     type: GET_CITY_FORECAST,
     payload: cityData,
