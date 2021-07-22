@@ -15,10 +15,7 @@ import { useSelector } from "react-redux";
 
 export default HomeScreen = ({ navigation }) => {
   const citiesList = useSelector((state) => state.cityReducer.citiesList);
-  console.log(
-    "Cities List -------------------------------------------------",
-    citiesList
-  );
+
   const [modalVisible, setModalVisible] = useState(false);
 
   const handleModalClose = () => {

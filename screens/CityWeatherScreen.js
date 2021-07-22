@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import {
   View,
   StyleSheet,
@@ -13,11 +14,21 @@ import { AntDesign } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
+
 import { LinearGradient } from "expo-linear-gradient";
 import MaskedView from "@react-native-community/masked-view";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { getCityForecast } from "../redux/actions/cities";
+import moment from "moment";
 
 export default CityWeatherScreen = ({ route, navigation }) => {
+  const dispatch = useDispatch();
+  const cityForecast = useSelector((state) => state.cityReducer.cityForecast);
+
+  useEffect(() => {
+    dispatch(getCityForecast(route.params.id));
+  }, [dispatch]);
+
   const weatherConditionMap = {
     Snow: (
       <FontAwesome5
@@ -175,6 +186,57 @@ export default CityWeatherScreen = ({ route, navigation }) => {
             >
               0%
             </Text>
+          </View>
+        </View>
+        {/* Sunrise SunSet template */}
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between",
+            marginTop: 60,
+            paddingHorizontal: 10,
+          }}
+        >
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Feather name="sunrise" size={22} color="yellow" />
+            <Text
+              style={{
+                marginLeft: 15,
+                color: COLORS.onPrimary,
+                fontSize: 16,
+              }}
+            >
+              {moment.unix(route.params.sunrise).format("h:mm a")}
+            </Text>
+          </View>
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Text
+              style={{
+                color: COLORS.onPrimary,
+                fontSize: 16,
+              }}
+            >
+              {moment.unix(route.params.sunset).format("h:mm a")}
+            </Text>
+            <Feather
+              name="sunset"
+              size={22}
+              color="orange"
+              style={{ marginLeft: 15 }}
+            />
           </View>
         </View>
       </View>

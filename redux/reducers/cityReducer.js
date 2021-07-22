@@ -11,7 +11,10 @@ export const cityReducer = (
         citiesList: [...state.citiesList, action.payload],
       };
     case GET_CITY_FORECAST:
-      return state;
+      return {
+        ...state,
+        cityForecast: action.payload,
+      };
     default:
       return state;
   }
