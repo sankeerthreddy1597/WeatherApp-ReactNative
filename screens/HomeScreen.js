@@ -11,12 +11,13 @@ import { Ionicons } from "@expo/vector-icons";
 import { COLORS } from "../assets/theme/colors";
 import AddCityModal from "../Components/AddCityModal";
 import CityWeatherCard from "../Components/CityWeatherCard";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import * as Location from "expo-location";
+import { addCityByLocation } from "../redux/actions/cities";
 
 export default HomeScreen = ({ navigation }) => {
   const citiesList = useSelector((state) => state.cityReducer.citiesList);
-
+  const dispatch = useDispatch();
   const [modalVisible, setModalVisible] = useState(false);
   const [location, setLocation] = useState(null);
 
@@ -26,7 +27,9 @@ export default HomeScreen = ({ navigation }) => {
       if (status === "granted") {
         let location = await Location.getCurrentPositionAsync({});
         setLocation(location);
-        console.log(location);
+        dispatch(
+          addCityByLocation(location.coords.latitude, location.coords.longitude)
+        );
       }
     })();
   }, []);
